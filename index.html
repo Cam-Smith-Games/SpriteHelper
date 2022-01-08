@@ -1,0 +1,54 @@
+<html>
+    <head>
+
+        <link rel="stylesheet" href="style.css" />
+        <script type="module" src="/out/main.js"></script>
+    </head>
+    <body>
+
+
+        <section id="controls">
+            <section>
+                <b>Upload Image (or paste anywhere...)</b><br/>
+                <input type="file" id="upload" accept="image/*" />
+            </section>
+
+            <div data-prop="image">
+                <b>Image Width / Height</b>
+                <input data-field="width" readonly type="number" />
+                <input data-field="height" readonly type="number" />
+            </div>
+
+            <hr />
+
+            <div data-prop="offset">
+                <b>Offset X / Y</b>
+                <input data-field="x" type="number" value="0" />
+                <input data-field="y" type="number" value="0" />
+            </div>
+
+            <div data-prop="count">
+                <b>Columns / Rows</b>
+                <input data-field="columns" type="number" value="0" />
+                <input data-field="rows" type="number" value="0" />
+            </div>
+
+            <div data-prop="size">
+                <b>Frame Width / Height</b>
+                <input data-field="x" type="number" value="32" />
+                <input data-field="y" type="number" value="32" />
+            </div>
+
+            <div data-prop="style">
+                <b>Color</b>
+                <input data-field="stroke" type="color" value="#00FFFF" />
+            </div>
+
+        </section>
+
+        <div id="container">
+            <img />
+            <canvas></canvas>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,42 @@
+body {
+    display: flex;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    column-gap: 1em;
+    background: #ddd;
+}
+
+
+#container {
+    position: relative;
+}
+#container img {
+    background: #0005;
+}
+#container canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+#controls {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+#controls div {
+    display: flex;
+    flex-direction: column;
+}
+#controls hr {
+    border-top: 1px solid black;
+    display: block;
+    width: 100%;
+}
+#controls input {
+     outline: none !important;
+     margin-top: 0.5em;
+}
+#controls input[type='number'] {
+    max-width: 14em
+}
