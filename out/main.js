@@ -30,6 +30,10 @@ const settings = {
         x: 0,
         y: 0
     },
+    gap: {
+        x: 0,
+        y: 0
+    },
     size: {
         x: 32,
         y: 32
@@ -58,7 +62,7 @@ inputs.forEach(input => {
     const field = input.getAttribute("data-field");
     input.oninput = function () {
         let val = input.value;
-        if (prop == "offset" || prop == "size" || prop == "count") {
+        if (prop == "gap" || prop == "offset" || prop == "size" || prop == "count") {
             // @ts-ignore
             val = Number(input.value);
             // margin can be 0, size cannot
@@ -106,6 +110,16 @@ function render() {
         ctx.lineTo(x, canvas.height);
         ctx.stroke();
         ctx.closePath();
+        if (x > settings.offset.x && settings.gap.x > 0) {
+            ctx.fillStyle = "#0005";
+            ctx.fillRect(x, 0, settings.gap.x, canvas.height);
+            x += settings.gap.x;
+            ctx.beginPath();
+            ctx.moveTo(x, 0);
+            ctx.lineTo(x, canvas.height);
+            ctx.stroke();
+            ctx.closePath();
+        }
     }
     for (let y = settings.offset.y; y < canvas.height; y += settings.size.y) {
         ctx.beginPath();
@@ -113,6 +127,16 @@ function render() {
         ctx.lineTo(canvas.width, y);
         ctx.stroke();
         ctx.closePath();
+        if (y > settings.offset.y && settings.gap.y > 0) {
+            ctx.fillStyle = "#0005";
+            ctx.fillRect(0, y, canvas.width, settings.gap.y);
+            y += settings.gap.y;
+            ctx.beginPath();
+            ctx.moveTo(0, y);
+            ctx.lineTo(canvas.width, y);
+            ctx.stroke();
+            ctx.closePath();
+        }
     }
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -121,7 +145,9 @@ function render() {
     for (let y = settings.offset.y; y < canvas.height; y += settings.size.y) {
         for (let x = settings.offset.x; x < canvas.width; x += settings.size.x) {
             ctx.fillText((i++).toString(), x + settings.size.x / 2, y + settings.size.y / 2);
+            x += settings.gap.x;
         }
+        y += settings.gap.y;
     }
 }
 document.onpaste = function (event) {
